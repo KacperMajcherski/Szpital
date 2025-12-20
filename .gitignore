@@ -1,0 +1,68 @@
+# .gitignore dla projektów .NET 8 — tylko kod i pliki projektu, bez VSCode i bibliotek
+
+# Build outputs
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Visual Studio (local settings)
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+*.DotSettings.user
+_ReSharper*/
+
+# NuGet / packages / caches
+packages/
+*.nupkg
+project.lock.json
+.nuget/
+.vsconfig
+
+# Compiled binaries / symbols / temporary files
+*.dll
+*.exe
+*.pdb
+*.cache
+*.ilk
+*.meta
+
+# Publish outputs
+publish/
+*.Publish.xml
+
+# Test results / coverage
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+*.db
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Misc
+*.vsix
+node_modules/
+bower_components/
+
+# Secrets and local-only files (opcjonalnie)
+secrets.json
+# Jeœli chcesz zachowaæ debug config w repo, usuñ poni¿sz¹ liniê:
+# __launchSettings.json__
