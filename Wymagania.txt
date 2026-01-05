@@ -1,0 +1,24 @@
+Opis projektu zaliczeniowego
+Celem projektu jest stworzenie systemu administracyjnego dla szpitala. System ma umo¿liwiaæ
+u¿ytkownikom prost¹ ewidencjê pracowników szpitala. Ka¿dy pracownik posiada imiê, nazwisko i pesel
+oraz nazwê u¿ytkownika i has³o. W systemie wyró¿niamy nastêpuj¹ce typy u¿ytkowników: lekarz,
+pielêgniarka, administrator.
+Lekarz, poza standardowymi danymi ka¿dego u¿ytkownika, ma dodatkowo specjalnoœæ (kardiolog,
+urolog, neurolog lub laryngolog) oraz numer PWZ. Lekarze i pielêgniarki maj¹ równie¿ listê swoich
+ca³odobowych dy¿urów, przy za³o¿eniu, ¿e jedna osoba mo¿e mieæ maksymalnie 10 dy¿urów w miesi¹cu
+oraz jej dy¿ury nie mog¹ wystêpowaæ dzieñ po dniu. Ponadto, danego dnia dy¿ur mo¿e mieæ tylko jeden
+lekarz na dan¹ specjalizacjê (np. danego dnia dy¿ur mo¿e mieæ kardiolog, urolog i laryngolog, ale nie
+dwóch kardiologów).
+System po uruchomieniu prosi o podanie nazwy u¿ytkownika i has³a. Po zalogowaniu, w przypadku
+lekarzy i pielêgniarek, mo¿liwe jest jedynie wyœwietlenie listy wszystkich lekarzy i pielêgniarek (Imiê,
+Nazwisko, posada + ewentualna specjalizacja) oraz planu dy¿urów wskazanej osoby w danym miesi¹cu.
+Administrator po zalogowaniu widzi wszystkich u¿ytkowników na liœcie. Mo¿e ponadto edytowaæ dane
+ka¿dego z nich (razem z planem dy¿urów) oraz dodawaæ nowych u¿ytkowników (w tym administratorów)
+do systemu.
+Na zakoñczenie dzia³ania programu ca³a lista pracowników jest serializowana i zapisywana do pliku,
+a podczas uruchamiania – odczytywana i deserializowana.
+Ca³y œwiat pracowników ma byæ zamodelowany w osobnym projekcie (biblioteka klas), a panel
+sterowania – jako osobna aplikacja (Console, Win Forms lub WPF).
+Projekt musi byæ zrealizowany zgodnie z paradygmatem programowania obiektowego i musi
+wykorzystywaæ dziedziczenie, hermetyzacjê, abstrakcjê oraz polimorfizm. Ponadto, musi byæ odporny na
+b³êdy (zarówno u¿ytkownika jak i systemowe, np. brak pliku).
