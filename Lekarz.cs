@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Szpital
 {
-    internal class Lekarz
+    internal class Lekarz : Pracownik
     {
+        public string Specjalizacja { get; set; }
+        public string NumerPWZ { get; set; }
+
+        public Lekarz(string imie, string nazwisko, string nazwaUzytkownika, string haslo, string pesel, string specjalizacja, string numerPWZ) : base(imie, nazwisko, nazwaUzytkownika, haslo, pesel)
+        {
+            Specjalizacja = specjalizacja;
+            NumerPWZ = numerPWZ;
+        }
     }
 }
