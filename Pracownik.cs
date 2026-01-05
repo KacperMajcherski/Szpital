@@ -8,5 +8,6 @@ namespace Szpital
 {
     internal class Pracownik
     {
+        //dmt1
     }
 }
