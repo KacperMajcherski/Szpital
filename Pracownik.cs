@@ -27,7 +27,7 @@ namespace Szpital
         // Sprawdza ograniczenia lokalne dla pracownika:
         // - max 10 dyżurów w tym samym miesiącu
         // - brak dyżuru tego samego dnia
-        // - brak dyżuru dzień przed lub dzień po (konsecutive)
+        // - brak dyżuru dzień przed lub dzień po
         public bool CanAssignDyzur(DateTime date)
         {
             date = date.Date;
