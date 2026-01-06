@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-Niniejszy projekt jest systemem administracyjnym dla szpitala.
-Język, w którym jest napisany, to C#.
-System kontroli wersji, który został  użyty do zarządzania repozytorium kodu, to Git. Użyto również GitHub jako miejsce do przechowywania kodu w chmurze.
-
-Autorzy:
-- Kacper Majcherski
-- Piotr Mikołajczak
-- Dominik Margazyn
-=======
 INSTRUKCJA:
 1. Otwórz VISUAL STUDIO CODE
 2. Przełącz się na brancha MASTER git checkout master
@@ -26,4 +16,3 @@ Autorzy:
 Kacper Majcherski
 Piotr Mikołajczak
 Dominik Margazyn
->>>>>>> 9ae430dbf5a8e90403b1f0bc5b34800c73d0fd8c
