@@ -2,7 +2,7 @@ INSTRUKCJA:
 1. Otwórz VISUAL STUDIO CODE
 2. Przełącz się na brancha MASTER git checkout master
 3. Update brancha ze zdalnego repo: git pull
-4. Utwórz nowego brancha git checkout -b <nazwa_brancha>
+4. Utwórz nowego brancha git checkout -b <nazwa_brancha> , na przykład: git checkout 06.01.2026
 5. Zrób swoje zmiany
 6. ZAPISZ zmiany w Visual Studio
 7. Git add . , potem git commit -m "nazwa_commita"
