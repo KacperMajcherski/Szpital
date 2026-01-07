@@ -11,7 +11,6 @@ INSTRUKCJA:
 
 Niniejszy projekt jest systemem administracyjnym dla szpitala. Język, w którym jest napisany, to C#. System kontroli wersji, który został użyty do zarządzania repozytorium kodu, to Git. Użyto również GitHub jako miejsce do przechowywania kodu w chmurze.
 
-Update na 06.01.2026:
 Autorzy:
 
 Kacper Majcherski
