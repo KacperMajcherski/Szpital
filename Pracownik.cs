@@ -16,6 +16,9 @@ namespace Szpital
         // Lista przypisanych dyżurów (tylko data, bez czasu)
         public List<DateTime> Dyzury { get; } = new List<DateTime>();
 
+        // Lista przypisanych dyżurów (tylko data, bez czasu)
+        public List<DateTime> Dyzury { get; } = new List<DateTime>();
+
         public Pracownik(string imie, string nazwisko, string nazwaUzytkownika, string haslo, string pesel)
         {
             Imie = imie;

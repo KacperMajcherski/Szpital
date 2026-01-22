@@ -3,6 +3,14 @@ using System.Collections.Generic;
 
 namespace Szpital
 {
+    internal enum SpecjalizacjaLekarza
+    {
+        Kardiolog,
+        Urolog,
+        Neurolog,
+        Laryngolog
+    }
+
     internal class Lekarz : Pracownik
     {
         public enum SpecjalizacjaLekarza
@@ -27,7 +35,12 @@ namespace Szpital
             string numerPWZ)
             : base(imie, nazwisko, nazwaUzytkownika, haslo, pesel)
         {
-            Specjalizacja = specjalizacja;
+            if (!Enum.TryParse<SpecjalizacjaLekarza>(specjalizacja, true, out var spec))
+            {
+                throw new ArgumentException("Nieprawidłowa specjalizacja. Dozwolone wartości: kardiolog, urolog, neurolog, laryngolog.", nameof(specjalizacja));
+            }
+
+            Specjalizacja = spec;
             NumerPWZ = numerPWZ;
         }
     }

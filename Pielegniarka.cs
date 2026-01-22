@@ -10,5 +10,6 @@ namespace Szpital
             : base(imie, nazwisko, nazwaUzytkownika, haslo, pesel)
         {
         }
+
     }
 }
