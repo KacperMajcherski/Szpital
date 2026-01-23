@@ -4,13 +4,17 @@ using System.Linq;
 
 namespace Szpital
 {
-    internal class Pracownik
+    public abstract class Pracownik
     {
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
         public string Pesel { get; set; }
         public string NazwaUzytkownika { get; }
         public string Haslo { get; }
+        public abstract string Rola { get; }
+
+        // Lista przypisanych dyżurów (tylko data, bez czasu)
+        public List<DateTime> Dyzury { get; } = new List<DateTime>();
 
         // Lista przypisanych dyżurów (tylko data, bez czasu)
         public List<DateTime> Dyzury { get; } = new List<DateTime>();
