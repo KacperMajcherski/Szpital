@@ -5,53 +5,32 @@ using System.IO;
 
 namespace Zarządzanie_Szpitalem
 {
-    /// <summary>
-    /// Główna klasa aplikacji systemu zarządzania szpitalem
-    /// </summary>
     class Program
     {
         #region Fields
 
-        /// <summary>
-        /// Globalna instancja systemu szpitalnego
-        /// </summary>
         private static HospitalSystem system;
-
-        /// <summary>
-        /// Serwis do serializacji danych
-        /// </summary>
         private static SerializationService serializationService;
-
-        /// <summary>
-        /// Ścieżka do pliku z danymi
-        /// </summary>
         private static string dataFilePath = "hospital_data.json";
 
         #endregion
 
         #region Main Entry Point
 
-        /// <summary>
-        /// Punkt wejścia aplikacji
-        /// </summary>
         static void Main()
         {
             try
             {
-                // Inicjalizujemy system
                 system = new HospitalSystem();
                 serializationService = new SerializationService();
 
-                // Wczytujemy dane z pliku (jeśli istnieje)
                 LoadData();
 
-                // Jeśli system jest pusty, inicjalizujemy dane testowe
                 if (system.GetUsers().Count == 0)
                 {
                     InitializeTestData();
                 }
 
-                // Główna pętla aplikacji
                 MainMenu();
             }
             catch (Exception ex)
@@ -64,9 +43,6 @@ namespace Zarządzanie_Szpitalem
 
         #region Data Management
 
-        /// <summary>
-        /// Wczytuje dane z pliku JSON
-        /// </summary>
         private static void LoadData()
         {
             try
@@ -82,9 +58,6 @@ namespace Zarządzanie_Szpitalem
             }
         }
 
-        /// <summary>
-        /// Zapisuje dane do pliku JSON
-        /// </summary>
         private static void SaveData()
         {
             try
@@ -98,9 +71,6 @@ namespace Zarządzanie_Szpitalem
             }
         }
 
-        /// <summary>
-        /// Inicjalizuje dane testowe do demonstracji
-        /// </summary>
         private static void InitializeTestData()
         {
             var admin = new Administrator("Jan", "Kowalski", "12345678901", "admin", "admin123");
@@ -113,7 +83,6 @@ namespace Zarządzanie_Szpitalem
             system.AddUser(doctor2);
             system.AddUser(nurse1);
 
-            // Dodajemy przykładowe dyżury
             doctor1.AddShift(new Shift(new DateTime(2026, 1, 15)));
             doctor1.AddShift(new Shift(new DateTime(2026, 1, 17)));
             nurse1.AddShift(new Shift(new DateTime(2026, 1, 20)));
@@ -125,9 +94,6 @@ namespace Zarządzanie_Szpitalem
 
         #region Main Menu
 
-        /// <summary>
-        /// Wyświetla menu główne z opcją logowania
-        /// </summary>
         private static void MainMenu()
         {
             bool running = true;
@@ -170,9 +136,6 @@ namespace Zarządzanie_Szpitalem
 
         #region Authentication
 
-        /// <summary>
-        /// Obsługuje logowanie użytkownika
-        /// </summary>
         private static void Login()
         {
             Console.Clear();
@@ -208,9 +171,6 @@ namespace Zarządzanie_Szpitalem
 
         #region Admin Menu
 
-        /// <summary>
-        /// Wyświetla menu administratora
-        /// </summary>
         private static void AdminMenu(Administrator admin)
         {
             bool inAdminPanel = true;
@@ -265,9 +225,6 @@ namespace Zarządzanie_Szpitalem
 
         #region Staff Menu
 
-        /// <summary>
-        /// Wyświetla menu dla lekarza/pielęgniarki
-        /// </summary>
         private static void StaffMenu(User staff)
         {
             bool inStaffPanel = true;
@@ -314,9 +271,6 @@ namespace Zarządzanie_Szpitalem
 
         #region Display Operations
 
-        /// <summary>
-        /// Wyświetla wszystkich pracowników w systemie
-        /// </summary>
         private static void DisplayAllUsers()
         {
             Console.Clear();
@@ -343,9 +297,6 @@ namespace Zarządzanie_Szpitalem
             }
         }
 
-        /// <summary>
-        /// Wyświetla lekarzy i pielęgniarki
-        /// </summary>
         private static void DisplayDoctorsAndNurses()
         {
             Console.Clear();
@@ -372,9 +323,6 @@ namespace Zarządzanie_Szpitalem
             }
         }
 
-        /// <summary>
-        /// Wyświetla wszystkie dyżury pracownika
-        /// </summary>
         private static void DisplayShifts(User staff)
         {
             Console.Clear();
@@ -398,7 +346,6 @@ namespace Zarządzanie_Szpitalem
                 Console.WriteLine($"{i + 1}. {sortedShifts[i].Date:yyyy-MM-dd} ({dayOfWeek})");
             }
 
-            // Podsumowanie
             Console.WriteLine($"\nPodsumowanie:");
             var groupedByMonth = sortedShifts
                 .GroupBy(s => new { s.Date.Year, s.Date.Month })
@@ -412,9 +359,6 @@ namespace Zarządzanie_Szpitalem
             }
         }
 
-        /// <summary>
-        /// Wyświetla dyżury pracownika w wybranym miesiącu z detailem
-        /// </summary>
         private static void DisplayShiftsForMonth(User staff)
         {
             Console.Clear();
@@ -468,9 +412,6 @@ namespace Zarządzanie_Szpitalem
             Console.WriteLine($"Razem: {monthShifts.Count} dyżurów");
         }
 
-        /// <summary>
-        /// Zwraca polską nazwę dnia tygodnia
-        /// </summary>
         private static string GetDayName(string englishDayName)
         {
             return englishDayName switch
@@ -490,9 +431,6 @@ namespace Zarządzanie_Szpitalem
 
         #region User Management Operations
 
-        /// <summary>
-        /// Dodaje nowego pracownika do systemu
-        /// </summary>
         private static void AddNewUser()
         {
             Console.Clear();
@@ -590,9 +528,6 @@ namespace Zarządzanie_Szpitalem
             }
         }
 
-        /// <summary>
-        /// Dodaje dyżur pracownikowi
-        /// </summary>
         private static void AddShiftToUser()
         {
             Console.Clear();
@@ -649,7 +584,6 @@ namespace Zarządzanie_Szpitalem
                 return;
             }
 
-            // Sprawdzenie czy dyżur już istnieje
             if (existingShifts != null && existingShifts.Any(s => s.Date.Date == shiftDate.Date))
             {
                 Console.WriteLine($"✗ Pracownik już ma dyżur w dniu {shiftDate:yyyy-MM-dd}!");
@@ -684,12 +618,8 @@ namespace Zarządzanie_Szpitalem
             }
         }
 
-        /// <summary>
-        /// Określa powód, dla którego nie można dodać dyżuru
-        /// </summary>
         private static string GetShiftFailureReason(List<Shift> existingShifts, DateTime newShiftDate, User staff)
         {
-            // Sprawdzenie limitu 10 dyżurów w miesiącu
             var monthShifts = existingShifts
                 .Where(s => s.Date.Year == newShiftDate.Year && s.Date.Month == newShiftDate.Month)
                 .ToList();
@@ -699,7 +629,6 @@ namespace Zarządzanie_Szpitalem
                 return $"Pracownik ma już 10 dyżurów w {newShiftDate:MMMM yyyy}";
             }
 
-            // Sprawdzenie dyżurów dzień po dniu
             foreach (var existingShift in existingShifts)
             {
                 int daysDifference = Math.Abs((newShiftDate.Date - existingShift.Date.Date).Days);
@@ -713,9 +642,6 @@ namespace Zarządzanie_Szpitalem
             return "Nie można dodać dyżuru z nieznanego powodu";
         }
 
-        /// <summary>
-        /// Pobiera i waliduje typ pracownika od użytkownika
-        /// </summary>
         private static string GetValidUserType()
         {
             while (true)
@@ -744,9 +670,6 @@ namespace Zarządzanie_Szpitalem
             }
         }
 
-        /// <summary>
-        /// Pobiera i waliduje specjalność lekarza
-        /// </summary>
         private static string GetValidSpecialty()
         {
             string[] validSpecialties = { "Kardiolog", "Urolog", "Neurolog", "Laryngolog" };
@@ -778,56 +701,89 @@ namespace Zarządzanie_Szpitalem
             }
         }
 
-        /// <summary>           
-        /// Waliduje format PESEL
-        /// </summary>
         private static bool ValidatePESEL(string pesel)
         {
             return !string.IsNullOrWhiteSpace(pesel) && pesel.Length == 11 && pesel.All(char.IsDigit);
         }
 
-        /// <summary>
-        /// Edytuje dane pracownika
-        /// </summary>
         private static void EditUser()
         {
             Console.Clear();
             Console.WriteLine("EDYTUJ PRACOWNIKA");
             Console.WriteLine("════════════════════════════════════════");
-            DisplayAllUsers();
+            var users = system.GetAllUsers();
 
-            Console.Write("\nPodaj nazwę użytkownika do edycji: ");
-            string username = Console.ReadLine()?.Trim();
-            var user = system.FindUserByUsername(username);
-
-            if (user == null)
+            if (users.Count == 0)
             {
-                Console.WriteLine("✗ Nie znaleziono użytkownika!");
+                Console.WriteLine("Brak pracowników w systemie.");
                 return;
             }
 
-            Console.WriteLine("\nEdytuj dane:");
+            int index = 1;
+            foreach (var user in users)
+            {
+                string specialtyInfo = "";
+                if (user is Doctor doctor)
+                {
+                    specialtyInfo = $" - {doctor.Specialty} (PWZ: {doctor.PWZNumber})";
+                }
+                Console.WriteLine($"{index}. {user.FirstName} {user.LastName} - {user.GetUserType()}{specialtyInfo}");
+                index++;
+            }
+
+            Console.Write("\nWybierz numer pracownika do edycji (0 aby anulować): ");
+            if (!int.TryParse(Console.ReadLine(), out int userIndex) || userIndex < 0 || userIndex > users.Count)
+            {
+                if (userIndex == 0)
+                {
+                    Console.WriteLine("Operacja anulowana.");
+                    return;
+                }
+                Console.WriteLine("✗ Nieprawidłowy wybór!");
+                return;
+            }
+
+            if (userIndex == 0)
+            {
+                Console.WriteLine("Operacja anulowana.");
+                return;
+            }
+
+            var userToEdit = users[userIndex - 1];
+
+            Console.WriteLine($"\nEdytowanie: {userToEdit.FirstName} {userToEdit.LastName}");
+            Console.WriteLine("════════════════════════════════════════");
+
             Console.Write("Nowe imię (Enter aby pominąć): ");
             string newFirstName = Console.ReadLine();
             if (!string.IsNullOrEmpty(newFirstName))
-                user.FirstName = newFirstName.Trim();
+            {
+                userToEdit.FirstName = newFirstName.Trim();
+            }
 
             Console.Write("Nowe nazwisko (Enter aby pominąć): ");
             string newLastName = Console.ReadLine();
             if (!string.IsNullOrEmpty(newLastName))
-                user.LastName = newLastName.Trim();
+            {
+                userToEdit.LastName = newLastName.Trim();
+            }
 
             Console.Write("Nowe hasło (Enter aby pominąć): ");
             string newPassword = Console.ReadLine();
             if (!string.IsNullOrEmpty(newPassword))
-                user.Password = newPassword.Trim();
+            {
+                if (newPassword.Length < 5)
+                {
+                    Console.WriteLine("✗ Hasło musi mieć co najmniej 5 znaków!");
+                    return;
+                }
+                userToEdit.Password = newPassword.Trim();
+            }
 
             Console.WriteLine("✓ Pracownik edytowany pomyślnie!");
+            Console.WriteLine($"Nowe dane: {userToEdit.FirstName} {userToEdit.LastName}");
         }
 
-        /// <summary>
-        /// Usuwa pracownika z systemu
-        /// </summary>
         private static void DeleteUser()
         {
             Console.Clear();
@@ -892,9 +848,6 @@ namespace Zarządzanie_Szpitalem
             }
         }
 
-        /// <summary>
-        /// Pobiera listę dyżurów użytkownika
-        /// </summary>
         private static List<Shift> GetUserShifts(User staff)
         {
             if (staff is Doctor doctor)

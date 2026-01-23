@@ -7,9 +7,6 @@ using System.Linq;
 
 namespace Zarz¹dzanie_Szpitalem
 {
-    /// <summary>
-    /// Serwis odpowiedzialny za serializacjê i deserializacjê danych
-    /// </summary>
     internal class SerializationService
     {
         private readonly JsonSerializerOptions jsonOptions;
@@ -24,9 +21,6 @@ namespace Zarz¹dzanie_Szpitalem
             };
         }
 
-        /// <summary>
-        /// Wczytuje u¿ytkowników z pliku JSON
-        /// </summary>
         public List<User> LoadFromFile(string filePath)
         {
             try
@@ -60,9 +54,6 @@ namespace Zarz¹dzanie_Szpitalem
             }
         }
 
-        /// <summary>
-        /// Zapisuje u¿ytkowników do pliku JSON
-        /// </summary>
         public void SaveToFile(List<User> users, string filePath)
         {
             try
@@ -77,9 +68,6 @@ namespace Zarz¹dzanie_Szpitalem
             }
         }
 
-        /// <summary>
-        /// Serializuje u¿ytkownika do formatu JSON
-        /// </summary>
         private object SerializeUser(User user)
         {
             if (user is Doctor doctor)
@@ -126,9 +114,6 @@ namespace Zarz¹dzanie_Szpitalem
             return null;
         }
 
-        /// <summary>
-        /// Deserializuje u¿ytkownika z formatu JSON
-        /// </summary>
         private User DeserializeUser(JsonElement userElement)
         {
             try
