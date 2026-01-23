@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace Zarządzanie_Szpitalem
 {
@@ -89,7 +90,7 @@ namespace Zarządzanie_Szpitalem
             try
             {
                 serializationService.SaveToFile(system.GetUsers(), dataFilePath);
-                Console.WriteLine("✓ Dane zapisane do pliku.");
+                Console.WriteLine($"✓ Dane zapisane do pliku: {Path.GetFullPath(dataFilePath)}");
             }
             catch (Exception ex)
             {
@@ -832,18 +833,62 @@ namespace Zarządzanie_Szpitalem
             Console.Clear();
             Console.WriteLine("USUŃ PRACOWNIKA");
             Console.WriteLine("════════════════════════════════════════");
-            DisplayAllUsers();
+            var users = system.GetAllUsers();
 
-            Console.Write("\nPodaj nazwę użytkownika do usunięcia: ");
-            string username = Console.ReadLine()?.Trim();
-
-            if (system.RemoveUser(username))
+            if (users.Count == 0)
             {
-                Console.WriteLine("✓ Pracownik usunięty pomyślnie!");
+                Console.WriteLine("Brak pracowników w systemie.");
+                return;
+            }
+
+            int index = 1;
+            foreach (var user in users)
+            {
+                string specialtyInfo = "";
+                if (user is Doctor doctor)
+                {
+                    specialtyInfo = $" - {doctor.Specialty} (PWZ: {doctor.PWZNumber})";
+                }
+                Console.WriteLine($"{index}. {user.FirstName} {user.LastName} - {user.GetUserType()}{specialtyInfo}");
+                index++;
+            }
+
+            Console.Write("\nWybierz numer pracownika do usunięcia (0 aby anulować): ");
+            if (!int.TryParse(Console.ReadLine(), out int userIndex) || userIndex < 0 || userIndex > users.Count)
+            {
+                if (userIndex == 0)
+                {
+                    Console.WriteLine("Operacja anulowana.");
+                    return;
+                }
+                Console.WriteLine("✗ Nieprawidłowy wybór!");
+                return;
+            }
+
+            if (userIndex == 0)
+            {
+                Console.WriteLine("Operacja anulowana.");
+                return;
+            }
+
+            var userToDelete = users[userIndex - 1];
+            Console.WriteLine($"\nCzy na pewno chcesz usunąć {userToDelete.FirstName} {userToDelete.LastName}? (T/N): ");
+            string confirmation = Console.ReadLine()?.ToUpper();
+
+            if (confirmation == "T" || confirmation == "TAK")
+            {
+                if (system.RemoveUser(userToDelete.Username))
+                {
+                    Console.WriteLine("✓ Pracownik usunięty pomyślnie!");
+                }
+                else
+                {
+                    Console.WriteLine("✗ Błąd przy usuwaniu pracownika!");
+                }
             }
             else
             {
-                Console.WriteLine("✗ Nie znaleziono użytkownika!");
+                Console.WriteLine("Operacja anulowana.");
             }
         }
 
