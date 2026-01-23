@@ -11,5 +11,6 @@ namespace Szpital
         public Pielegniarka(string imie, string nazwisko, string nazwaUzytkownika, string haslo, string pesel) : base(imie, nazwisko, nazwaUzytkownika, haslo, pesel)
         {
         }
+
     }
 }
